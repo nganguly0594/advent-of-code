@@ -14,7 +14,7 @@ public class P1
 {
     public static void main (String[] args) throws IOException
     {
-        Scanner scanfile = new Scanner(new File("texts/hi.txt"));
+        Scanner scanfile = new Scanner(new File("texts/D1.txt"));
         
         int num1 = scanfile.nextInt();
         int num2 = scanfile.nextInt();
