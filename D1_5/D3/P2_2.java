@@ -1,4 +1,4 @@
-package D1_5.D4;
+package D1_5.D3;
 
 
 /**
@@ -11,16 +11,16 @@ package D1_5.D4;
 import java.util.Scanner;
 import java.io.*;
 
-public class P2
+public class P2_2
 {
     public static void main (String[] args) throws IOException
     {    
-        Scanner scanfile = new Scanner(new File("texts/D4.txt"));
+        Scanner scanfile = new Scanner(new File("texts/D3.txt"));
         while (scanfile.hasNext())
             {
                 String num = scanfile.next();
                 
-                if (num.charAt(7) == 48)
+                if (num.charAt(0) == 49)
                     {
                         System.out.println(num);
                     }
