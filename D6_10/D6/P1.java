@@ -34,7 +34,7 @@ public class P1
             int count2 = 0;
             int difference = 0;
             
-            for (int x = 0; x < 256; x++)
+            for (int x = 0; x < 80; x++)
                 {
                     for (int y = 0; y < lanternfish2.length; y++)
                         {
