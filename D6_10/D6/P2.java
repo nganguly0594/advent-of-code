@@ -72,5 +72,7 @@ public class P2
                 }
             
             System.out.println("Number of fish after 80 days: " + lanternfish2.length);
+            
+            
         }
 }
