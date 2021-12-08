@@ -345,6 +345,6 @@ public class P2
             output = "";
         }
 
-        System.out.println(sum);
+        System.out.println("Part 2 Answer: " + sum);
     }
 }
