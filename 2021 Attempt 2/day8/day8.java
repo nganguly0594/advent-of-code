@@ -44,11 +44,10 @@ public class day8 {
         System.out.println("Part 1 Answer: " + count);
 
         //----------part 2----------
-        String zero = "", one = "", two = "", three = "", four = "", five = "", six = "", seven = "", eight = "", nine = "";
-        String a = "", b = "", c = "", d = "", e = "", f = "", g = "";
-
         int sum = 0;
         for (int i = 0; i < inputs.size(); i++) {
+            String zero = "", one = "", two = "", three = "", four = "", five = "", six = "", seven = "", eight = "", nine = "";
+            String a = "", b = "", c = "", d = "", e = "", f = "", g = "";
             for (int j = 0; j < inputs.get(i).length; j++) {
                 String temp = inputs.get(i)[j];
                 if (temp.length() == 2) {
@@ -80,21 +79,25 @@ public class day8 {
 
             for (int j = 0; j < 4; j++) {
                 String temp = four.substring(j, j + 1);
-                if (!(temp.equals(f) || temp.equals(c)) && d.length() != 0) {
-                    b = temp;
-                }
-                else {
-                    d = temp;
+                if (!temp.equals(f) && !temp.equals(c)) {
+                    if (b.length() == 0) {
+                        b = temp;
+                    }
+                    else {
+                        d = temp;
+                    }
                 }
             }
 
             for (int j = 0; j < 7; j++) {
                 String temp = eight.substring(j, j + 1);
-                if (!(temp.equals(a) || temp.equals(b) || temp.equals(c) || temp.equals(d) || temp.equals(f)) && g.length() != 0) {
-                    e = temp;
-                }
-                else {
-                    g = temp;
+                if (!temp.equals(a) && !temp.equals(b) && !temp.equals(c) && !temp.equals(d) && !temp.equals(f)) {
+                    if (e.length() == 0) {
+                        e = temp;
+                    }
+                    else {
+                        g = temp;
+                    }
                 }
             }
 
@@ -166,7 +169,6 @@ public class day8 {
             }
 
             int outdig = Integer.parseInt(out);
-            System.out.println(outdig);
             sum += outdig;
         }
 
