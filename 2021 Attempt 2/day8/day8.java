@@ -183,8 +183,7 @@ public class day8 {
             for (int i = 0; i < len; i++) {
                 if (digit.contains(dig.substring(i, i + 1))) {
                     num = result;
-                }
-                else {
+                } else {
                     num = "";
                     break;
                 }
