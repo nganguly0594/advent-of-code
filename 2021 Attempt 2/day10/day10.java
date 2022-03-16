@@ -6,7 +6,6 @@ package day10;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.LongStream;
 
 public class day10 {
     public static void main(String[] args) throws IOException {
