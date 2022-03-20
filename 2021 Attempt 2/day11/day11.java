@@ -75,13 +75,12 @@ public class day11 {
                     }
                 }
             }
-
-            if (count == 100) {
-                together = true;
-            }
-
+            
             if (steps == 100) {
                 total_flashes = flashes;
+            }
+            if (count == 100) {
+                together = true;
             }
         }
 
