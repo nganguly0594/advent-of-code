@@ -34,13 +34,13 @@ public class day15 {
 				int risk = map[y][x];
 				
 				for (int r = 0; r < 5; r++) {
-					for (int c = 0; c < 5; c++) {
-						int newRisk = risk + r + c;
-						if (newRisk > 9) {
-							newRisk -= 9;
-						}
-						biggerMap[r * map.length + y][c * map[0].length + x] = newRisk;
-					}
+                    for (int c = 0; c < 5; c++) {
+                        int newRisk = risk + r + c;
+                        if (newRisk > 9) {
+                            newRisk -= 9;
+                        }
+                        biggerMap[r * map.length + y][c * map[0].length + x] = newRisk;
+                    }
 				}
 			}
 		}

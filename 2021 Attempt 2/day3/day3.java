@@ -115,11 +115,6 @@ public class day3 {
 
     }
 
-    /**
-     * binary to decimal method
-     * @param binary string
-     * @return decimal
-     */
     public static int toDecimal(String binary) {
         int length = binary.length();
         int num = 0;
