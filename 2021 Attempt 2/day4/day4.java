@@ -14,12 +14,11 @@ public class day4 {
         Scanner scanfile = new Scanner(new File("day4/input.txt"));
 
         //---------part 1 and part 2----------
-        String line = scanfile.nextLine().replace(",", " ");
-        Scanner scan1 = new Scanner(line);
+        String line = scanfile.nextLine();
+        String[] strings = line.split(",");
         ArrayList<Integer> calls = new ArrayList<>();
-
-        while (scan1.hasNext()) {
-            calls.add(scan1.nextInt());
+        for (int i = 0; i < strings.length; i++) {
+            calls.add(Integer.parseInt(strings[i]));
         }
 
         int[][] bingo = new int[5][5];

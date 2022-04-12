@@ -17,14 +17,12 @@ public class day5 {
         ArrayList<int[]> coords = new ArrayList<>();
 
         while(scanfile.hasNext()) {
-            String line = scanfile.nextLine().replace(",", " ");
-            Scanner scan = new Scanner(line);
+            String line = scanfile.nextLine().replace(" -> ", ",");
+            String[] strings = line.split(",");
             int[] nums = new int[4];
-            nums[0] = scan.nextInt();
-            nums[1] = scan.nextInt();
-            scan.next();
-            nums[2] = scan.nextInt();
-            nums[3] = scan.nextInt();
+            for (int i = 0; i < strings.length; i++) {
+                nums[i] = Integer.parseInt(strings[i]);
+            }
             coords.add(nums);
         }
 

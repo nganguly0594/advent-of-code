@@ -19,26 +19,26 @@ public class day8 {
         int count = 0;
         while (scanfile.hasNext()) {
             String line = scanfile.nextLine().replace("|", "");
-            Scanner scan = new Scanner(line);
-
-            String[] ins = new String[10];
-            for (int i = 0; i < 10; i++) {
-                String input = scan.next();
-                ins[i] = input;
-            }
-            inputs.add(ins);
-
-            String[] outs = new String[4];
-            for (int i = 0; i < 4; i++) {
-                String output = scan.next();
-                outs[i] = output;
-
-                int length = output.length();
-                if (length == 2 || length == 3 || length == 4 || length == 7) {
-                    count++;
+            try (Scanner scan = new Scanner(line)) {
+                String[] ins = new String[10];
+                for (int i = 0; i < 10; i++) {
+                    String input = scan.next();
+                    ins[i] = input;
                 }
+                inputs.add(ins);
+
+                String[] outs = new String[4];
+                for (int i = 0; i < 4; i++) {
+                    String output = scan.next();
+                    outs[i] = output;
+
+                    int length = output.length();
+                    if (length == 2 || length == 3 || length == 4 || length == 7) {
+                        count++;
+                    }
+                }
+                outputs.add(outs);
             }
-            outputs.add(outs);
         }
 
         System.out.println("Part 1 Answer: " + count);
