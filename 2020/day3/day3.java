@@ -88,6 +88,8 @@ public class day3 {
             pos5.increment(5);
         }
 
-        System.out.println("Part 2 Answer: " + (treesHit * slope2 * slope3 * slope4 * slope5));
+        long ans = (long) treesHit * slope2 * slope3 * slope4 * slope5;
+
+        System.out.println("Part 2 Answer: " + ans);
     }
 }
