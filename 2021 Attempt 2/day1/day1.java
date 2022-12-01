@@ -4,7 +4,7 @@ package day1;
  */
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class day1 {
 
@@ -12,16 +12,16 @@ public class day1 {
         Scanner scanfile = new Scanner(new File("day1/input.txt"));
 
         //----------part 1----------
-        int[] depth = new int[2000];
+        ArrayList<Integer> depth = new ArrayList<>();
 
-        for (int i = 0; scanfile.hasNext(); i++) {
-            depth[i] = scanfile.nextInt();
+        while(scanfile.hasNext()) {
+            depth.add(scanfile.nextInt());
         }
 
         int count = 0;
 
-        for (int i = 0; i < depth.length - 1; i++) {
-            if (depth[i] < depth[i + 1]) {
+        for (int i = 0; i < depth.size() - 1; i++) {
+            if (depth.get(i) < depth.get(i + 1)) {
                 count++;
             }
         }
@@ -31,9 +31,9 @@ public class day1 {
         //----------part 2----------
         count = 0;
 
-        for (int i = 0; i < depth.length - 3; i++) {
-            int sum1 = depth[i] + depth[i + 1] + depth[i + 2];
-            int sum2 = depth[i + 1] + depth[i + 2] + depth[i + 3];
+        for (int i = 0; i < depth.size() - 3; i++) {
+            int sum1 = depth.get(i) + depth.get(i + 1) + depth.get(i + 2);
+            int sum2 = depth.get(i + 1) + depth.get(i + 2) + depth.get(i + 3);
             
             if (sum1 < sum2) {
                 count++;
