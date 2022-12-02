@@ -1,13 +1,13 @@
-package day3;
+package day12;
 
 /**
- * day3
+ * day12
  */
 
 import java.io.*;
 import java.util.*;
 
-public class day3 {
+public class day12 {
     public static void main(String[] args) throws IOException {
         Scanner scanfile = new Scanner(new File("input.txt"));
         ArrayList<String> inputs = new ArrayList<>();
