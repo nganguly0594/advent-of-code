@@ -12,23 +12,22 @@ public class day4 {
         Scanner scanfile = new Scanner(new File("day4/input.txt"));
         ArrayList<String> inputs = new ArrayList<>();
         while (scanfile.hasNext()) {
-            inputs.add(scanfile.nextLine());
+            inputs.add(scanfile.nextLine().replace("-", " ").replace(",", " "));
         }
 
         //----------part 1----------
         int count = 0;
 
         for (String s : inputs) {
-            s = s.replace("-", " ").replace(",", " ");
-            Scanner scan = new Scanner(s);
-            
-            int one = scan.nextInt();
-            int two = scan.nextInt();
-            int three = scan.nextInt();
-            int four = scan.nextInt();
+            try (Scanner scan = new Scanner(s)) {
+                int one = scan.nextInt();
+                int two = scan.nextInt();
+                int three = scan.nextInt();
+                int four = scan.nextInt();
 
-            if ((one <= three && two >= four) || (one >= three && two <= four)) {
-                count++;
+                if ((one <= three && two >= four) || (one >= three && two <= four)) {
+                    count++;
+                }
             }
         }
 
@@ -36,22 +35,21 @@ public class day4 {
 
 
         //----------part 2----------
-        int count2 = 0;
+        count = 0;
 
         for (String s : inputs) {
-            s = s.replace("-", " ").replace(",", " ");
-            Scanner scan = new Scanner(s);
-            
-            int one = scan.nextInt();
-            int two = scan.nextInt();
-            int three = scan.nextInt();
-            int four = scan.nextInt();
+            try (Scanner scan = new Scanner(s)) {
+                int one = scan.nextInt();
+                int two = scan.nextInt();
+                int three = scan.nextInt();
+                int four = scan.nextInt();
 
-            if ((one <= three && two >= three) || (one <= four && two >= four) || (one >= three && two <= four)) {
-                count2++;
+                if ((one <= three && two >= three) || (one <= four && two >= four) || (one >= three && two <= four)) {
+                    count++;
+                }
             }
         }
 
-        System.out.println("Part 2 Answer: " + count2);
+        System.out.println("Part 2 Answer: " + count);
     }
 }
