@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class day1 {
 
     public static void main(String[] args) throws IOException {
-        Scanner scanfile = new Scanner(new File("input.txt"));
+        Scanner scanfile = new Scanner(new File("day1/input.txt"));
 
         //----------part 1 and part 2----------
         int largest = 0;
