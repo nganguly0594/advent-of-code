@@ -9,7 +9,7 @@ import java.util.*;
 
 public class day5 {
     public static void main(String[] args) throws IOException {
-        Scanner scanfile = new Scanner(new File("input.txt"));
+        Scanner scanfile = new Scanner(new File("day5/input.txt"));
         ArrayList<String> inputs = new ArrayList<>();
         while (scanfile.hasNext()) {
             inputs.add(scanfile.nextLine());
