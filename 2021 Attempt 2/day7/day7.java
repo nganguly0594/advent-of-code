@@ -24,7 +24,6 @@ public class day7 {
             }
             
             crabs.add(crab);
-            
         }
 
         int min = 1000000000;
