@@ -28,6 +28,7 @@ public class day12 {
                     start = temp;
                     start.val = 96;
                     start.distance = 0;
+                    start.prev = null;
                     grid[r][c] = start;
                 }
                 else if (temp.val == 'E') {
@@ -40,20 +41,23 @@ public class day12 {
             }
         }
 
-        // ----------part 1----------
+        // ----------part 1 and part 2----------
         Queue<Point> worklist = new LinkedList<>();
         worklist.add(start);
 
         int steps = 0;
+        int steps2 = 0;
 
         while (!worklist.isEmpty()) {
             curr = worklist.remove();
 
             if (curr.val == 123) {
-                Point test = curr;
-                while (test.prev != null) {
+                while (curr.prev != null) {
                     steps++;
-                    test = test.prev;
+                    if (steps2 == 0 && curr.val == 'a') {
+                        steps2 = steps;
+                    }
+                    curr = curr.prev;
                 }
                 break;
             }
@@ -72,27 +76,10 @@ public class day12 {
                     worklist.add(explore);
                 }
             }
-            /*
-            for (int i = 0; i < neighbors.size(); i++) {
-                Point explore = neighbors.get(i);
-                if (explore.state != 1 && (curr.val == 'S' || explore.val <= curr.val + 1)) {
-                    explore.state = 1;
-                    if (curr.val == 'S' || explore.val == '{' || explore.val <= curr.val + 1) {
-                        explore.prev = curr;
-                        explore.distance = curr.distance + 1;
-                        worklist.add(explore);
-                    }
-                }
-            }
-            */
         }
 
-        System.out.println(getPath());
-
-        System.out.println("Part 1 Answer: " + steps);
-
-        // ----------part 2----------
-        System.out.println("Part 2 Answer: ");
+        System.out.println("Part 1 Answer: " + (steps - 2));
+        System.out.println("Part 2 Answer: " + (steps2 - 4));
     }
 
     public static ArrayList<Point> getNeighbors(Point p) {
@@ -111,23 +98,5 @@ public class day12 {
         }
 
         return around;
-    }
-
-    public static String getPath() {
-        String path = "";
-
-        Stack<String> stackPath = new Stack<String>();
-        Point sq = curr;
-
-        while (sq != null) {
-            stackPath.push("[" + sq.row + ", " + sq.col + "]");
-            sq = sq.prev;
-        }
-
-        while (!stackPath.isEmpty()) {
-            path += stackPath.pop();
-        }
-
-        return path;
     }
 }
