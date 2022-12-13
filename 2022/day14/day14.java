@@ -16,7 +16,6 @@ public class day14 {
         }
 
         //----------part 1----------
-
         
         System.out.println("Part 1 Answer: ");
 
