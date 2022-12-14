@@ -32,64 +32,25 @@ public class day13 {
         }
 
         int sumIndices = 0;
-        int sumIndices2 = 0;
 
         for (int i = 0; i < leftInput.size(); i++) {
             String left = leftInput.get(i);
             String right = rightInput.get(i);
 
-            finalLeft = left;
-            finalRight = right;
-
-            if (inOrder(left, right)) {
+            if (inOrder(left, right) == 1) {
+                System.out.println(i + 1);
                 sumIndices += i + 1;
-            }
-
-            if (1 == inOrder2(left, right)) {
-                sumIndices2 += i + 1;
             }
         }
 
-        System.out.println("Part 1 Answer: " + sumIndices + " " + sumIndices2);
+        System.out.println("Part 1 Answer: " + sumIndices);
 
         // ----------part 2----------
 
         System.out.println("Part 2 Answer: ");
     }
 
-    public static boolean inOrder(String left, String right) {
-        if (left.length() == 1) {
-            if (right.length() == 1) {
-                if (Integer.parseInt(left) <= Integer.parseInt(right)) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-            return inOrder("[" + left + "]", right);
-        }
-        if (right.length() == 1) {
-            return inOrder(left, "[" + right + "]");
-        }
-
-        ArrayList<String> leftParts = split(left);
-        ArrayList<String> rightParts = split(right);
-
-        if (rightParts.size() == 0 && leftParts.size() != 0) {
-            return false;
-        }
-
-        for (int i = 0; i < Math.min(leftParts.size(), rightParts.size()); i++) {
-            if (!inOrder(leftParts.get(i), rightParts.get(i))) {
-                return false;
-            }
-        }
-
-        return split(finalLeft).size() <= split(finalRight).size();
-    }
-
-    public static int inOrder2(String left, String right) {
+    /*public static int inOrder(String left, String right) {
         if (left.length() == 1) {
             if (right.length() == 1) {
                 if (Integer.parseInt(left) < Integer.parseInt(right)) {
@@ -126,16 +87,56 @@ public class day13 {
             return -1;
         }
         return 0;
+    }*/
+
+    public static int inOrder(Object left, Object right) {
+        if (left instanceof Integer && right instanceof Integer) {
+            return ((Integer) left).compareTo((Integer) right);
+        }
+
+        if (left instanceof Integer) {
+            left = "[" + left + "]";
+        }
+        if (right instanceof Integer) {
+            right = "[" + right + "]";
+        }
+
+        ArrayList<Object> leftParts = split((String) left);
+        ArrayList<Object> rightParts = split((String) right);
+
+        int i = 0;
+        while (true) {
+            if (i > leftParts.size() - 1 && i > rightParts.size() - 1) {
+                return 0;
+            }
+            else if (i > leftParts.size() - 1 && i <= rightParts.size() - 1) {
+                return -1;
+            }
+            else if (i <= leftParts.size() - 1 && i > rightParts.size() - 1) {
+                return 1;
+            }
+            else {
+                int compare = inOrder(leftParts.get(i), rightParts.get(i));
+                if (compare != 0) {
+                    return compare;
+                }
+            }
+            i++;
+        }
     }
 
-    public static ArrayList<String> split(String line) {
+    public static ArrayList<Object> split(String line) {
         Stack<Integer> brackets = new Stack<>();
-        ArrayList<String> parts = new ArrayList<>();
+        ArrayList<Object> parts = new ArrayList<>();
 
         String element = "";
 
         for (int i = 0; i < line.length(); i++) {
             String s = line.substring(i, i + 1);
+            String next = "";
+            if (i < line.length() - 1) {
+                next = line.substring(i + 1, i + 2);
+            }
 
             if (brackets.size() > 1 && !s.equals("[")) {
                 element += s;
@@ -143,7 +144,13 @@ public class day13 {
                 if (s.equals(",")) {
                     continue;
                 } else if (Character.isDigit(s.charAt(0))) {
-                    parts.add(s);
+                    if (Character.isDigit(next.charAt(0))) {
+                        parts.add(s + next);
+                        i++;
+                    }
+                    else {
+                        parts.add(s);
+                    }
                 }
             }
 
@@ -158,6 +165,13 @@ public class day13 {
                     parts.add(element);
                     element = "";
                 }
+            }
+        }
+
+        for (int i = 0; i < parts.size(); i++) {
+            String s = (String) parts.get(i);
+            if (s.length() == 1 || (s.length() == 2 && s.charAt(0) != '[')) {
+                parts.set(i, Integer.parseInt(s));
             }
         }
 
