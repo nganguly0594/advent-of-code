@@ -8,10 +8,7 @@ import java.io.*;
 import java.util.*;
 
 public class day13 {
-    public static String finalLeft;
-    public static String finalRight;
-
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
         Scanner scanfile = new Scanner(new File("day13/input.txt"));
 
         ArrayList<String> inputs = new ArrayList<>();
@@ -21,160 +18,54 @@ public class day13 {
         }
 
         // ----------part 1----------
-        ArrayList<String> leftInput = new ArrayList<>();
-        ArrayList<String> rightInput = new ArrayList<>();
+        ArrayList<Packet> leftInput = new ArrayList<>();
+        ArrayList<Packet> rightInput = new ArrayList<>();
         for (int i = 0; i < inputs.size(); i++) {
             if (i % 3 == 0) {
-                leftInput.add(inputs.get(i));
+                leftInput.add(new Packet(inputs.get(i)));
             } else if (i % 3 == 1) {
-                rightInput.add(inputs.get(i));
+                rightInput.add(new Packet(inputs.get(i)));
             }
         }
-
+        
         int sumIndices = 0;
-
+		
         for (int i = 0; i < leftInput.size(); i++) {
-            String left = leftInput.get(i);
-            String right = rightInput.get(i);
-
-            if (inOrder(left, right) == 1) {
-                System.out.println(i + 1);
-                sumIndices += i + 1;
-            }
+            sumIndices += (leftInput.get(i).compare(rightInput.get(i)) > 0) ? i + 1 : 0;
         }
-
+        
         System.out.println("Part 1 Answer: " + sumIndices);
 
-        // ----------part 2----------
+        //-----------part 2----------
+        ArrayList<Packet> fullSort = new ArrayList<>();
+        fullSort.add(new Packet("[[2]]"));
+        fullSort.add(new Packet("[[6]]"));
 
-        System.out.println("Part 2 Answer: ");
-    }
+        int productIndices = 1;
+        
+        while(leftInput.size() != 0) {
+            Packet current = leftInput.remove(0);
+            Packet current2 = rightInput.remove(0);
+            int i = 0;
 
-    /*public static int inOrder(String left, String right) {
-        if (left.length() == 1) {
-            if (right.length() == 1) {
-                if (Integer.parseInt(left) < Integer.parseInt(right)) {
-                    return 1;
-                }
-                else if (Integer.parseInt(left) > Integer.parseInt(right)) {
-                    return -1;
-                }
-                return 0;
+            while (current.compare(fullSort.get(i)) == 1 && i < fullSort.size()) {
+                i++;
             }
-            return inOrder2("[" + left + "]", right);
-        }
-        if (right.length() == 1) {
-            return inOrder2(left, "[" + right + "]");
-        }
+            fullSort.add(i, current);
 
-        ArrayList<String> leftParts = split(left);
-        ArrayList<String> rightParts = split(right);
-
-        for (int i = 0; i < Math.min(leftParts.size(), rightParts.size()); i++) {
-            int compare = inOrder2(leftParts.get(i), rightParts.get(i));
-            if (compare == 1) {
-                return 1;
+            i = 0;
+            while (current2.compare(fullSort.get(i)) == 1 && i < fullSort.size()) {
+                i++;
             }
-            if (compare == -1) {
-                return -1;
-            }
+            fullSort.add(i, current2);
         }
 
-        if (leftParts.size() < rightParts.size()) {
-            return 1;
-        }
-        if (rightParts.size() < leftParts.size()) {
-            return -1;
-        }
-        return 0;
-    }*/
-
-    public static int inOrder(Object left, Object right) {
-        if (left instanceof Integer && right instanceof Integer) {
-            return ((Integer) left).compareTo((Integer) right);
-        }
-
-        if (left instanceof Integer) {
-            left = "[" + left + "]";
-        }
-        if (right instanceof Integer) {
-            right = "[" + right + "]";
-        }
-
-        ArrayList<Object> leftParts = split((String) left);
-        ArrayList<Object> rightParts = split((String) right);
-
-        int i = 0;
-        while (true) {
-            if (i > leftParts.size() - 1 && i > rightParts.size() - 1) {
-                return 0;
-            }
-            else if (i > leftParts.size() - 1 && i <= rightParts.size() - 1) {
-                return -1;
-            }
-            else if (i <= leftParts.size() - 1 && i > rightParts.size() - 1) {
-                return 1;
-            }
-            else {
-                int compare = inOrder(leftParts.get(i), rightParts.get(i));
-                if (compare != 0) {
-                    return compare;
-                }
-            }
-            i++;
-        }
-    }
-
-    public static ArrayList<Object> split(String line) {
-        Stack<Integer> brackets = new Stack<>();
-        ArrayList<Object> parts = new ArrayList<>();
-
-        String element = "";
-
-        for (int i = 0; i < line.length(); i++) {
-            String s = line.substring(i, i + 1);
-            String next = "";
-            if (i < line.length() - 1) {
-                next = line.substring(i + 1, i + 2);
-            }
-
-            if (brackets.size() > 1 && !s.equals("[")) {
-                element += s;
-            } else if (brackets.size() == 1) {
-                if (s.equals(",")) {
-                    continue;
-                } else if (Character.isDigit(s.charAt(0))) {
-                    if (Character.isDigit(next.charAt(0))) {
-                        parts.add(s + next);
-                        i++;
-                    }
-                    else {
-                        parts.add(s);
-                    }
-                }
-            }
-
-            if (s.equals("[")) {
-                if (brackets.size() > 0) {
-                    element += s;
-                }
-                brackets.push(1);
-            } else if (s.equals("]")) {
-                brackets.pop();
-                if (element.length() > 0 && brackets.size() == 1) {
-                    parts.add(element);
-                    element = "";
-                }
+        for (int i = 0; i < fullSort.size(); i++) {
+            if (fullSort.get(i).str.equals("[[2]]") || fullSort.get(i).str.equals("[[6]]")) {
+                productIndices *= (i + 1);
             }
         }
-
-        for (int i = 0; i < parts.size(); i++) {
-            String s = (String) parts.get(i);
-            if (s.length() == 1 || (s.length() == 2 && s.charAt(0) != '[')) {
-                parts.set(i, Integer.parseInt(s));
-            }
-        }
-
-        return parts;
-    }
+        
+        System.out.println("Part 2 Answer: " + productIndices);
+	}
 }
