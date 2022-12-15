@@ -22,16 +22,18 @@ public class day13 {
         ArrayList<Packet> rightInput = new ArrayList<>();
         for (int i = 0; i < inputs.size(); i++) {
             if (i % 3 == 0) {
-                leftInput.add(new Packet(inputs.get(i)));
+                Packet pack = new Packet(inputs.get(i));
+                leftInput.add(pack);
             } else if (i % 3 == 1) {
-                rightInput.add(new Packet(inputs.get(i)));
+                Packet pack = new Packet(inputs.get(i));
+                rightInput.add(pack);
             }
         }
         
         int sumIndices = 0;
 		
         for (int i = 0; i < leftInput.size(); i++) {
-            sumIndices += (leftInput.get(i).compare(rightInput.get(i)) > 0) ? i + 1 : 0;
+            sumIndices += (leftInput.get(i).compareTo(rightInput.get(i)) > 0) ? i + 1 : 0;
         }
         
         System.out.println("Part 1 Answer: " + sumIndices);
@@ -42,23 +44,14 @@ public class day13 {
         fullSort.add(new Packet("[[6]]"));
 
         int productIndices = 1;
-        
+
         while(leftInput.size() != 0) {
-            Packet current = leftInput.remove(0);
-            Packet current2 = rightInput.remove(0);
-            int i = 0;
-
-            while (current.compare(fullSort.get(i)) == 1 && i < fullSort.size()) {
-                i++;
-            }
-            fullSort.add(i, current);
-
-            i = 0;
-            while (current2.compare(fullSort.get(i)) == 1 && i < fullSort.size()) {
-                i++;
-            }
-            fullSort.add(i, current2);
+            fullSort.add(leftInput.remove(0));
+            fullSort.add(rightInput.remove(0));
         }
+
+        Collections.sort(fullSort);
+        Collections.reverse(fullSort);
 
         for (int i = 0; i < fullSort.size(); i++) {
             if (fullSort.get(i).str.equals("[[2]]") || fullSort.get(i).str.equals("[[6]]")) {
