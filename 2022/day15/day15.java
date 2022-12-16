@@ -53,7 +53,9 @@ public class day15 {
 
 
         //----------part 2----------
-        System.out.println("Part 2 Answer: ");
+        long tuningFreq = 0;
+
+        System.out.println("Part 2 Answer: " + tuningFreq);
     }
 
     public static boolean possible(int x, int y, ArrayList<Point> sens, ArrayList<Integer> dists) {
