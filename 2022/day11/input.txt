@@ -1,3 +1,4 @@
+
 Monkey 0:
   Starting items: 85, 77, 77
   Operation: new = old * 7
