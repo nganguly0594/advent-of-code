@@ -1,4 +1,4 @@
-package D6_10.D8;
+package D6_10.D8; 
 
 import java.util.*;
 import java.io.*;
