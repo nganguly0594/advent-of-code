@@ -1,4 +1,4 @@
-package day9;
+package day9; 
 
 public class Point {
     public int row;

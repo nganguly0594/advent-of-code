@@ -1,4 +1,3 @@
-
 noop
 addx 33
 addx -30

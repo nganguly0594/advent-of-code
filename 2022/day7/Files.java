@@ -1,4 +1,4 @@
-package day7;
+package day7; 
 
 public class Files {
     public String name;
