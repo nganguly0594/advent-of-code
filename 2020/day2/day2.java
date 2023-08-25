@@ -2,7 +2,7 @@ package day2;
 
 /**
  * day2
- */
+ */ 
 
 import java.io.*;
 import java.util.*;
