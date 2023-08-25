@@ -2,7 +2,7 @@ package day4;
 
 /**
  * day4
- */
+ */ 
 
 import java.io.*;
 import java.util.Scanner;
