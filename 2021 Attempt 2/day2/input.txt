@@ -1,4 +1,4 @@
-orward 3
+forward 3
 down 4
 forward 3
 up 4
