@@ -1,7 +1,7 @@
 package day24;
 
 /**
- * day24
+ * day24 
  */
 
 import java.io.*;
