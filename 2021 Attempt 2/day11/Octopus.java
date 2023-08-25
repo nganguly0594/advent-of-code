@@ -1,7 +1,7 @@
 package day11;
 
 /**
- * Point
+ * Point 
  */
 public class Octopus {
     public int row;
