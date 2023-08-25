@@ -2,7 +2,7 @@ package day7;
 
 /**
  * Innerday7
- */
+ */ 
 
 import java.io.*;
 import java.util.Scanner;
