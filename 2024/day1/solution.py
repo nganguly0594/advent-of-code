@@ -30,4 +30,4 @@ for key, val in count1.items():
     if key in count2:
         similarity += val * key * count2[key]
 
-print("Part 2 Solution", similarity)
+print("Part 2 Solution: ", similarity)
