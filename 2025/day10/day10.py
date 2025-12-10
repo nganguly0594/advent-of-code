@@ -1,4 +1,3 @@
-import re
 from collections import deque
 from scipy.optimize import linprog
 import numpy as np
@@ -9,12 +8,11 @@ def parse(data):
     joltages = []
 
     for line in data:
-        removed = re.sub(r'[\[\]\(\)\{\}]', '', line)
-        parts = removed.split()
+        states, *buttons, jolts = line.split()
 
-        end_states.append(tuple(1 if c == '#' else 0 for c in parts[0]))
-        button_lists.append([list(map(int, button.split(','))) for button in parts[1:-1]])
-        joltages.append(tuple(map(int, parts[-1].split(','))))
+        end_states.append(tuple(1 if c == '#' else 0 for c in states[1:-1]))
+        button_lists.append([list(map(int, button[1:-1].split(','))) for button in buttons])
+        joltages.append(tuple(map(int, jolts[1:-1].split(','))))
     
     return end_states, button_lists, joltages
 
